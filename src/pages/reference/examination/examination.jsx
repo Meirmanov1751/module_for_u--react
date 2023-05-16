@@ -69,10 +69,10 @@ const ExaminationPage = () => {
                 <button type="submit" className="btn mt-4 btn-primary btn-danger m-3"
                         onClick={(e) => {
                             setStatus('rejected')
-                        }}>Бас тарту
+                        }}>Отклонить
                 </button>
                 <button type="submit" className="btn mt-4 btn-primary btn-success m-3"
-                        onClick={(e) => setStatus('approved')}>Жіберу
+                        onClick={(e) => setStatus('approved')}>Подтвердить
                 </button>
 
             </form>

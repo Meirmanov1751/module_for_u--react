@@ -53,7 +53,7 @@ const BypassSheetItem = ({bypassSheet}) => {
                     <p className="reference-card__phone">{date}</p>
                 </div>
             </div>
-            <button style={{fontSize: "13px"}} className={'btn btn-primary'} onClick={downloadPDF}>PDF жазу</button>
+            <button style={{fontSize: "13px"}} className={'btn btn-primary'} onClick={downloadPDF}>Скачать PDF</button>
         </div>
     );
 };
