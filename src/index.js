@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import  {store} from "./store/store";
 import {BrowserRouter} from "react-router-dom";
-import * as PropTypes from "prop-types";
+import i18next from './i18n';
 import {Provider} from "react-redux";
 
 

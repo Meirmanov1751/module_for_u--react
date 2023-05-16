@@ -1,5 +1,4 @@
-import React, {useContext, useEffect} from 'react';
-import {Context} from "../../../index";
+import React, {useEffect} from 'react';
 import {observer} from "mobx-react-lite";
 import {ErrorMessage, Field, Formik} from "formik"
 import classes from '../auth.module.css'
@@ -13,9 +12,9 @@ const LoginForm = () => {
     var dispatch = useDispatch()
 
 
+
     return (
-        <div>
-            <h1 className={classes.title}>Кіру</h1>
+        <div style={{marginTop: "50px"}}>
             <Formik initialValues={{username: '', password: ''}}
                     validate={(values) => {
                         const errors = {};
@@ -39,7 +38,7 @@ const LoginForm = () => {
                     }}
                     onSubmit={(values, {setSubmitting}) => {
                         dispatch(login(values.username, values.password));
-                        debugger
+
                         setSubmitting(false);
                     }}>
                 {({
@@ -53,9 +52,11 @@ const LoginForm = () => {
                       /* and other goodies */
                   }) => (
                     <form className={classes.form} onSubmit={handleSubmit}>
-                        <Field className={classes.input} placeholder={'email'} type="username" name="username"/>
+                        <label className={'login-lable'}>Email</label>
+                        <Field className={classes.input} type="username" name="username"/>
                         <ErrorMessage name="username" component="div"/>
-                        <Field className={classes.input} placeholder={'құпия сөз'} type="password" name="password"/>
+                        <label className={'login-lable'}>Кілтсөз</label>
+                        <Field className={classes.input} type="password" name="password"/>
                         <ErrorMessage name="password" component="div"/>
                         <button className={classes.btn} type="Кіру" disabled={isSubmitting}>
                             Кіру

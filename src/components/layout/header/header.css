@@ -1,11 +1,24 @@
+.logo{
+    padding: 3px 5px;
+    color: white;
+    width: 100px;
+    background: white;
+}
+
+
 .header {
-    padding: 20px;
-    background-color: #ffffff;
+    background-color: #005590;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-brand {
     font-size: 24px;
+}
+
+.login-lable{
+    text-align: left;
+    font-size: 16px;
+    color: #333;
 }
 
 .logo-img {
@@ -54,6 +67,12 @@
     display: flex !important;
     flex-basis: auto !important;
 }
+
+.login-btn{
+    color: #fff;
+    text-decoration-line: none;
+}
+
 
 @media (max-width: 768px) {
     .navbar-nav {

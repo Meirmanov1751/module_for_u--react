@@ -3,72 +3,45 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import instance from "../../../store/api";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import {fetchProduct} from "../../../store/action.creators/product";
+import {useNavigate} from "react-router";
+import {Trans} from "react-i18next";
+
 
 const CreateOrderPage = () => {
     var user = useSelector(state => state.auth.user)
-    const dispatch = useDispatch();
-    const productsList = useSelector((state) => state.products.items);
+    let navigate = useNavigate();
 
-    useEffect(() => {
-        dispatch(fetchProduct());
-    }, [dispatch]);
-
-
-    const [customer, setCustomer] = useState(user?.id);
-    const [products, setProducts] = useState([]);
-    const [description, setDescription] = useState('');
-    const [count, setCount] = useState(1);
-    const [totalAmount, setTotalAmount] = useState(0);
+    const [info, setInfo] = useState();
+    const [status, setStatus] = useState('pending');
+    const [student, setStudent] = useState(user.id)
 
     const handleSubmit = () => {
         const payload = {
-            customer,
-            products,
-            description,
-            count,
-            total_amount: totalAmount
-        };
-        instance.post('/api/order/order/', payload)
+            student,
+            info,
+            status,
+        }
+        instance.post('/api/reference/reference/', payload)
             .then(response => {
                 console.log(response.data);
+
                 // здесь можно выполнить перенаправление на страницу заказа или другую страницу
             })
             .catch(error => {
                 console.error(error);
             });
+        navigate("/reference");
     };
 
     return (
         <div className="container mt-5">
-            <h1>Тапсырыс жасау</h1>
+            <h1><Trans i18nKey="reference.btn">
+                Запрос справки
+            </Trans></h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="products">Өнімдер:</label>
-                    {productsList?
-                        <select multiple id="products" name="products" className="form-control" onChange={(e) => setProducts(Array.from(e.target.selectedOptions, option => option.value))}>
-                            {
-                                productsList.map(product => {
-                                   return  <option value={product.id}>{product.name}</option>
-                                })
-                            }
-                        </select>
-                        : null
-                    }
-
-                </div>
-                <div className="form-group">
-                    <label htmlFor="description">Сипаттама:</label>
-                    <textarea id="description" name="description" className="form-control" onChange={(e) => setDescription(e.target.value)}></textarea>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="count">Саны:</label>
-                    <input type="number" id="count" name="count" min="1" className="form-control" onChange={(e) => setCount(e.target.value)} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="totalAmount">Жалпы сома:</label>
-                    <input type="number" id="totalAmount" name="totalAmount" min="0" step="0.01" className="form-control" onChange={(e) => setTotalAmount(e.target.value)} />
+                    <label htmlFor="description">Анықтама түрі:</label>
+                    <textarea id="description" name="description" className="form-control" onChange={(e) => setInfo(e.target.value)}></textarea>
                 </div>
                 <button type="submit" className="btn mt-4 btn-primary" >Тапсырыс жасау</button>
             </form>

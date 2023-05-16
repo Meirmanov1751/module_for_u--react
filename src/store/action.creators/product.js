@@ -31,6 +31,11 @@ export const fetchProduct = () => async (dispatch) => {
         dispatch(fetchProductSuccess(response.data.results));
 
     } catch (error) {
+        if (error.response && error.response.status === 401) {
+            // window.location.href = '/login';
+        } else {
+            console.log('Произошла ошибка:', error.message);
+        }
         dispatch(fetchProductFailure(error));
     }
 };

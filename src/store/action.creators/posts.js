@@ -28,6 +28,13 @@ export const fetchPosts = () => async (dispatch) => {
         dispatch(fetchPostsSuccess(response.data));
 
     } catch (error) {
+        if (error.response && error.response.status === 401) {
+            localStorage.removeItem("user");
+            localStorage.removeItem("accessToken");
+            localStorage.removeItem("refreshToken");
+        } else {
+            console.log('Произошла ошибка:', error.message);
+        }
         dispatch(fetchPostsFailure(error));
     }
 };

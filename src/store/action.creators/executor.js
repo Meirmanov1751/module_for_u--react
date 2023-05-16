@@ -30,6 +30,13 @@ export const fetchExecutors = () => async (dispatch) => {
         // console.log(data)
         dispatch(fetchExecutorsSuccess(response.data.results));
     } catch (error) {
+        if (error.response && error.response.status === 401) {
+            localStorage.removeItem("user");
+            localStorage.removeItem("accessToken");
+            localStorage.removeItem("refreshToken");
+        } else {
+            console.log('Произошла ошибка:', error.message);
+        }
         dispatch(fetchExecutorsFailure(error));
     }
 };

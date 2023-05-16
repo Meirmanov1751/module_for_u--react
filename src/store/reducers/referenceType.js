@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 import {
-    FETCH_REFERENCES_SUCCESS,
-    FETCH_REFERENCES_REQUEST,
-    FETCH_REFERENCES_FAILURE
+    FETCH_REFERENCESTYPE_SUCCESS,
+    FETCH_REFERENCESTYPE_REQUEST,
+    FETCH_REFERENCESTYPE_FAILURE
 } from './../const';
 
 const items = (state = [], action) => {
     switch (action.type) {
-        case FETCH_REFERENCES_SUCCESS:
+        case FETCH_REFERENCESTYPE_SUCCESS:
             return action.payload;
         default:
             return state;
@@ -16,10 +16,10 @@ const items = (state = [], action) => {
 
 const isFetching = (state = false, action) => {
     switch (action.type) {
-        case FETCH_REFERENCES_REQUEST:
+        case FETCH_REFERENCESTYPE_REQUEST:
             return true;
-        case FETCH_REFERENCES_SUCCESS:
-        case FETCH_REFERENCES_FAILURE:
+        case FETCH_REFERENCESTYPE_SUCCESS:
+        case FETCH_REFERENCESTYPE_FAILURE:
             return false;
         default:
             return state;
@@ -28,10 +28,10 @@ const isFetching = (state = false, action) => {
 
 const error = (state = null, action) => {
     switch (action.type) {
-        case FETCH_REFERENCES_FAILURE:
+        case FETCH_REFERENCESTYPE_FAILURE:
             return action.payload;
-        case FETCH_REFERENCES_REQUEST:
-        case FETCH_REFERENCES_SUCCESS:
+        case FETCH_REFERENCESTYPE_REQUEST:
+        case FETCH_REFERENCESTYPE_SUCCESS:
             return null;
         default:
             return state;

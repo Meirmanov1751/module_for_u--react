@@ -1,35 +1,38 @@
 import {
-    FETCH_REFERENCES_SUCCESS,
-    FETCH_REFERENCES_REQUEST,
-    FETCH_REFERENCES_FAILURE
+    FETCH_REFERENCESTYPE_SUCCESS,
+    FETCH_REFERENCESTYPE_REQUEST,
+    FETCH_REFERENCESTYPE_FAILURE,
 } from './../const';
 import instance from "../api";
 
-export const fetchReferenceRequest = () => ({
-    type: FETCH_REFERENCES_REQUEST,
+export const fetchReferenceTypeRequest = () => ({
+    type: FETCH_REFERENCESTYPE_REQUEST,
 });
 
-export const fetchReferenceSuccess = (reference) => ({
+export const fetchReferenceTypeSuccess = (reference) => ({
 
-    type: FETCH_REFERENCES_SUCCESS,
+    type: FETCH_REFERENCESTYPE_SUCCESS,
     payload: reference,
 });
 
-export const fetchReferenceFailure = (error) => ({
-    type: FETCH_REFERENCES_FAILURE,
+export const fetchReferenceTypeFailure = (error) => ({
+    type: FETCH_REFERENCESTYPE_FAILURE,
     payload: error,
 });
 
-export const fetchReference = () => async (dispatch) => {
-    dispatch(fetchReferenceRequest());
+export const fetchReferenceType = () => async (dispatch) => {
+    dispatch(fetchReferenceTypeRequest());
 
     try {
-        const response = await instance.get(`/api/reference/reference/`);
+        const response = await instance.get(`/api/referenceType/referenceType/`);
         // const data = await response.json();
-        // console.log(data)
-
-        dispatch(fetchReferenceSuccess(response.data.results));
+        dispatch(fetchReferenceTypeSuccess(response.data.results));
     } catch (error) {
-        dispatch(fetchReferenceFailure(error));
+        if (error.response && error.response.status === 401) {
+            window.count = 1;
+       } else {
+            console.log('Произошла ошибка:', error.message);
+        }
+        dispatch(fetchReferenceTypeFailure(error));
     }
 };

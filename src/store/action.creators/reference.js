@@ -1,35 +1,40 @@
 import {
-    FETCH_CUSTOMERS_SUCCESS,
-    FETCH_CUSTOMERS_REQUEST,
-    FETCH_CUSTOMERS_FAILURE
+    FETCH_REFERENCES_SUCCESS,
+    FETCH_REFERENCES_REQUEST,
+    FETCH_REFERENCES_FAILURE
 } from './../const';
 import instance from "../api";
 
-export const fetchCustomerRequest = () => ({
-    type: FETCH_CUSTOMERS_REQUEST,
+export const fetchReferenceRequest = () => ({
+    type: FETCH_REFERENCES_REQUEST,
 });
 
-export const fetchCustomerSuccess = (сustomer) => ({
+export const fetchReferenceSuccess = (reference) => ({
 
-    type: FETCH_CUSTOMERS_SUCCESS,
-    payload: сustomer,
+    type: FETCH_REFERENCES_SUCCESS,
+    payload: reference,
 });
 
-export const fetchCustomerFailure = (error) => ({
-    type: FETCH_CUSTOMERS_FAILURE,
+export const fetchReferenceFailure = (error) => ({
+    type: FETCH_REFERENCES_FAILURE,
     payload: error,
 });
 
-export const fetchCustomer = () => async (dispatch) => {
-    dispatch(fetchCustomerRequest());
+export const fetchReference = () => async (dispatch) => {
+    dispatch(fetchReferenceRequest());
 
     try {
-        const response = await instance.get(`/api/customer/customer/`);
+        const response = await instance.get(`/api/reference/reference/`);
         // const data = await response.json();
         // console.log(data)
 
-        dispatch(fetchCustomerSuccess(response.data.results));
+        dispatch(fetchReferenceSuccess(response.data.results));
     } catch (error) {
-        dispatch(fetchCustomerFailure(error));
+        if (error.response && error.response.status === 401) {
+            // window.location.href = '/login';
+        } else {
+            console.log('Произошла ошибка:', error.message);
+        }
+        dispatch(fetchReferenceFailure(error));
     }
 };
