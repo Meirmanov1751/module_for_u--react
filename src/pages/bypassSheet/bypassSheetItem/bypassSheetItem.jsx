@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import { Trans } from 'react-i18next';
+
 
 const BypassSheetItem = ({bypassSheet}) => {
     var createdAt = new Date(bypassSheet.created_at)
@@ -23,7 +25,7 @@ const BypassSheetItem = ({bypassSheet}) => {
     }
 
     return (
-        <div  className={`reference-card container attendance-table mb-5 `}>
+        <div className={`reference-card container attendance-table mb-5 `}>
             <div id={`actual-receipt${bypassSheet.id}`} className={`p-3`}>
                 <div className="reference-card__info">
                     <h3 className="reference-card__title mb-3">{bypassSheet.title}</h3>
@@ -53,7 +55,9 @@ const BypassSheetItem = ({bypassSheet}) => {
                     <p className="reference-card__phone">{date}</p>
                 </div>
             </div>
-            <button style={{fontSize: "13px"}} className={'btn btn-primary'} onClick={downloadPDF}>Скачать PDF</button>
+            <button style={{fontSize: "13px"}} className={'btn btn-primary'} onClick={downloadPDF}><Trans i18nKey="btns.PDF">
+                Скачать PDF
+            </Trans></button>
         </div>
     );
 };

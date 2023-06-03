@@ -20,5 +20,8 @@
   },
   "bypassSheet": {
     "pageTitle": "Алаушы тізім"
+  },
+  "btns": {
+    "PDF" : "PDF Жазу"
   }
 }

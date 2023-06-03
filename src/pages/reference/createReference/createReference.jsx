@@ -5,18 +5,29 @@ import instance from "../../../store/api";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router";
 import {Trans} from "react-i18next";
+import {useEffect} from "react";
+import {fetchReference} from "../../../store/action.creators/reference";
+import {fetchReferenceType} from "../../../store/action.creators/referenceType";
 
 
 const CreateOrderPage = () => {
+    const dispatch = useDispatch();
     var user = useSelector(state => state.auth.user)
     let navigate = useNavigate();
+    useEffect(() => {
+        dispatch(fetchReferenceType());
+    }, []);
+
 
     const [info, setInfo] = useState();
     const [status, setStatus] = useState('pending');
     const [student, setStudent] = useState(user.id)
+    const [reference_type, setReferenceType] = useState("");
+    const referenceTypeList = useSelector((state) => state.referenceType.items);
 
     const handleSubmit = () => {
         const payload = {
+            reference_type: reference_type[0],
             student,
             info,
             status,
@@ -40,9 +51,21 @@ const CreateOrderPage = () => {
             </Trans></h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="description">Анықтама түрі:</label>
                     <textarea id="description" name="description" className="form-control" onChange={(e) => setInfo(e.target.value)}></textarea>
                 </div>
+                <div className="form-group">
+                    <label htmlFor="description">Анықтама түрі:</label>
+                    {referenceTypeList ?
+                        <select multiple id="products" name="products" className="form-control"
+                                onChange={(e) => setReferenceType(Array.from(e.target.selectedOptions, option => option.value))}>
+                            {
+                                referenceTypeList.map(referenceType => {
+                                    return <option value={referenceType.id}>{referenceType.title}</option>
+                                })
+                            }
+                        </select>
+                        : null
+                    }             </div>
                 <button type="submit" className="btn mt-4 btn-primary" >Тапсырыс жасау</button>
             </form>
         </div>

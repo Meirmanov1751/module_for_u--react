@@ -53,19 +53,19 @@ const ExaminationPage = () => {
             </div>
 
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="description">Анықтама түрі:</label>
-                    {referenceTypeList ?
-                        <select multiple id="products" name="products" className="form-control"
-                                onChange={(e) => setReferenceType(Array.from(e.target.selectedOptions, option => option.value))}>
-                            {
-                                referenceTypeList.map(referenceType => {
-                                    return <option value={referenceType.id}>{referenceType.title}</option>
-                                })
-                            }
-                        </select>
-                        : null
-                    }             </div>
+                {/*<div className="form-group">*/}
+                {/*    <label htmlFor="description">Анықтама түрі:</label>*/}
+                {/*    {referenceTypeList ?*/}
+                {/*        <select multiple id="products" name="products" className="form-control"*/}
+                {/*                onChange={(e) => setReferenceType(Array.from(e.target.selectedOptions, option => option.value))}>*/}
+                {/*            {*/}
+                {/*                referenceTypeList.map(referenceType => {*/}
+                {/*                    return <option value={referenceType.id}>{referenceType.title}</option>*/}
+                {/*                })*/}
+                {/*            }*/}
+                {/*        </select>*/}
+                {/*        : null*/}
+                {/*    }             </div>*/}
                 <button type="submit" className="btn mt-4 btn-primary btn-danger m-3"
                         onClick={(e) => {
                             setStatus('rejected')
