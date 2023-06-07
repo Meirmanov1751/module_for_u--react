@@ -5,6 +5,7 @@ import classes from '../auth.module.css'
 import {useNavigate} from "react-router";
 import {login} from "../../../store/action.creators/auth";
 import {useDispatch, useSelector} from "react-redux";
+import {Trans} from "react-i18next";
 
 const LoginForm = () => {
     var user = useSelector(state => state.auth)
@@ -55,11 +56,15 @@ const LoginForm = () => {
                         <label className={'login-lable'}>Email</label>
                         <Field className={classes.input} type="username" name="username"/>
                         <ErrorMessage name="username" component="div"/>
-                        <label className={'login-lable'}>Кілтсөз</label>
+                        <label className={'login-lable'}><Trans i18nKey="login.password">
+                            Пароль
+                        </Trans></label>
                         <Field className={classes.input} type="password" name="password"/>
                         <ErrorMessage name="password" component="div"/>
                         <button className={classes.btn} type="Кіру" disabled={isSubmitting}>
-                            Кіру
+                            <Trans i18nKey="login.in">
+                                Вход
+                            </Trans>
                         </button>
                     </form>
                 )}

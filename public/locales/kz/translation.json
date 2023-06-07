@@ -16,12 +16,21 @@
   "reference": {
     "pageTitle": "Менім анықтамаларым",
     "title": "Анықтама",
-    "btn": "Анықтама сұрау"
+    "btn": "Анықтама сұрау",
+    "restype": "Анықтама түрі:",
+    "req": "Сұраныс"
   },
   "bypassSheet": {
-    "pageTitle": "Алаушы тізім"
+    "pageTitle": "Алаушы тізім",
+    "name": "Аты",
+    "pod": "Қол"
   },
   "btns": {
     "PDF" : "PDF Жазу"
+  },
+  "login": {
+    "login": "Email",
+    "password": "Кілтсөз",
+    "in": "Кіру"
   }
 }

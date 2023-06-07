@@ -34,8 +34,12 @@ const BypassSheetItem = ({bypassSheet}) => {
                 <table>
                     <thead>
                     <tr>
-                        <th>Аты:</th>
-                        <th>Қол:</th>
+                        <th><Trans i18nKey="bypassSheet.name">
+                            Название
+                        </Trans>:</th>
+                        <th><Trans i18nKey="bypassSheet.pod">
+                            Подпись
+                        </Trans>:</th>
                     </tr>
                     </thead>
                     <tbody>

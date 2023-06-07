@@ -48,7 +48,9 @@ const ExaminationPage = () => {
                 Справка
             </Trans> №{reference.id}</h1>
             <div className={'d-flex'}>
-                <h3 style={{textAlign: 'left'}}>Сұраныс:</h3>
+                <h3 style={{textAlign: 'left'}}><Trans i18nKey="reference.req">
+                    Запрос
+                </Trans>:</h3>
                 <h3 style={{textAlign: 'left', margin: '0 25px'}}>{reference.info}</h3>
             </div>
 

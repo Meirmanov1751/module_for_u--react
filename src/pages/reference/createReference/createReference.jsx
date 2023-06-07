@@ -54,7 +54,9 @@ const CreateOrderPage = () => {
                     <textarea id="description" name="description" className="form-control" onChange={(e) => setInfo(e.target.value)}></textarea>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="description">Анықтама түрі:</label>
+                    <label htmlFor="description"><Trans i18nKey="reference.restype">
+                        Вид спривки:
+                    </Trans></label>
                     {referenceTypeList ?
                         <select multiple id="products" name="products" className="form-control"
                                 onChange={(e) => setReferenceType(Array.from(e.target.selectedOptions, option => option.value))}>
